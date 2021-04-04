@@ -1,0 +1,83 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- Comment Tag -->
+    <h3>Comment Tag ...</h3>
+    Data uncommented :
+    <br>
+    {{ comment }}
+    <br>
+    Data commented :
+    <br>
+    {% comment "Optional note" %}
+    {{ comment }}
+    {% endcomment %}
+    <br>
+    <hr>
+    <!-- ############################# -->
+
+    <!-- Cycle Tag -->
+    <h3>Cycle Tag ...</h3>
+    {% for i in cycle %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+        {{ i }}
+        <br>
+    </tr>
+    {% endfor %}
+    <hr>
+    <!-- ############################# -->
+
+    <!-- Filter Tag -->
+    <h3>Filter Tag ...</h3>
+    {% filter force_escape|lower %}
+    This text will be HTML-escaped, and will appear in all lowercase.
+    {% endfilter %}
+    <hr>
+    <!-- ############################# -->
+
+
+    <!-- Firstof Tag -->
+    <h3>Firstof Tag ...</h3>
+
+    <h5>Variable displayed : </h5>
+    {% firstof var1 var2 var3 %}
+    <hr>
+    <!-- ############################# -->
+
+    <!-- For Tag -->
+    <h3>For Tag ...</h3>
+    {% for x, y in points %}
+    There is a point at {{ x }},{{ y }}
+    <br>
+    {% endfor %}
+    <hr>
+    <!-- ############################# -->
+
+    <!-- Now Tag -->
+    <h3>Now Tag ...</h3>
+    It is {% now "jS F Y H:i" %}
+    <br>
+    It is the {% now "jS \o\f F" %}
+    <br>
+    It is {% now "SHORT_DATETIME_FORMAT" %}
+    <hr>
+    <!-- ############################# -->
+
+
+    <!-- Now Tag -->
+    <h3>Now Tag ...</h3>
+    <hr>
+    <!-- ############################# -->
+
+
+</body>
+
+</html>

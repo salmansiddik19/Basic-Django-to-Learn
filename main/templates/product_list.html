@@ -1,0 +1,25 @@
+{% load product_tags %}
+<!-- Loading the file we defined our template tags in -->
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Sold By</th>
+                <th>Reviews</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.sold_by}}</td>
+                <td>{% calc_review_count product.id %}</td> <!-- our template tag -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
