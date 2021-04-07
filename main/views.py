@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Product
 from main.templatetags import product_tags
+from django.template.response import TemplateResponse
 
 
 def home(request):
@@ -22,3 +23,8 @@ def home(request):
 def product_list(request):
     product = Product.objects.all()
     return render(request, 'product_list.html', {'products': product})
+
+
+def demo(request):
+    context = {}
+    return TemplateResponse(request, 'demo.html', context=context)

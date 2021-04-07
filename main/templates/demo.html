@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Make me a Django middleware</title>
+</head>
+
+<body>
+    <div id="root">
+        {{ translations.bn.greeting }}-{{ translations.bn.header }}
+    </div>
+</body>
+
+{{ translations|json_script:"translations" }}
