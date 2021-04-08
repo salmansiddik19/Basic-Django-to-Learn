@@ -7,6 +7,25 @@ from .decorators import user_is_sold_by
 from main.templatetags import product_tags
 from django.template.response import TemplateResponse
 from django.contrib import messages
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+
+
+class FormMessageMixin(object):
+    @property
+    def form_valid_message(self):
+        return NotImplemented
+
+    form_invalid_message = 'Please correct the errors below.'
+
+    def form_valid(self, form):
+        messages.success(self.request, self.form_valid_message)
+        print(self.form_valid_message)
+        return super(FormMessageMixin, self).form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, self.form_invalid_message)
+        return super(FormMessageMixin, self).form_invalid(form)
 
 
 def home(request):
@@ -44,3 +63,10 @@ def product_edit(request, product_id):
 def demo(request):
     context = {}
     return TemplateResponse(request, 'demo.html', context=context)
+
+
+class ProductCreateView(FormMessageMixin, CreateView):
+    model = Product
+    fields = ('__all__')
+    success_url = reverse_lazy('home')
+    form_valid_message = 'The document was successfully created!'
