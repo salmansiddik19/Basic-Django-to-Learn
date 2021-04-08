@@ -18,6 +18,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path, include
 
+handler404 = 'main.views.error_404'
+handler500 = 'main.views.error_500'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),

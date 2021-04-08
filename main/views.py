@@ -77,3 +77,13 @@ def is_stock(request):
     # sold by currrent user's in stock product list
     sold_by_current_user = Product.is_stock.filter(sold_by=request.user)
     return render(request, 'is_stock.html', {'products': products, 'products_current': sold_by_current_user})
+
+
+def error_404(request, *args, **kwargs):
+    context = {}
+    return render(request, 'main/404.html', context)
+
+
+def error_500(request, *args, **kwargs):
+    context = {}
+    return render(request, 'main/500.html', context)
