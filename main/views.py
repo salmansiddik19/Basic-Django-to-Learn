@@ -7,7 +7,7 @@ from .decorators import user_is_sold_by
 from main.templatetags import product_tags
 from django.template.response import TemplateResponse
 from django.contrib import messages
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
 
 
@@ -70,3 +70,8 @@ class ProductCreateView(FormMessageMixin, CreateView):
     fields = ('__all__')
     success_url = reverse_lazy('home')
     form_valid_message = 'The document was successfully created!'
+
+
+def is_stock(request):
+    products = Product.is_stock.all()
+    return render(request, 'is_stock.html', {'products': products})

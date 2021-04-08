@@ -9,6 +9,9 @@ urlpatterns = [
     path('products/edit/<int:product_id>/',
          views.product_edit, name='product_edit'),
     path('demo/', views.demo, name='demo'),
-    ######################
+    path('products/stock-list/',
+         views.is_stock, name='is_stock'),
+
+    ##########  class based view ############
     path('product/add/', ProductCreateView.as_view(), name='product_add'),
 ]
