@@ -73,5 +73,7 @@ class ProductCreateView(FormMessageMixin, CreateView):
 
 
 def is_stock(request):
-    products = Product.is_stock.all()
-    return render(request, 'is_stock.html', {'products': products})
+    products = Product.is_stock.all()  # all in stock product list
+    # sold by currrent user's in stock product list
+    sold_by_current_user = Product.is_stock.filter(sold_by=request.user)
+    return render(request, 'is_stock.html', {'products': products, 'products_current': sold_by_current_user})
