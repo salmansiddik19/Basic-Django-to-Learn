@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Product
-from .forms import ProductForm, ProfileForm
+from .forms import ProductForm, ProfileForm, PositionForm
 from django.contrib.auth.decorators import login_required
 from .decorators import user_is_sold_by
 from main.templatetags import product_tags
@@ -104,3 +104,14 @@ def profile_create(request):
     else:
         form = ProfileForm()
     return render(request, 'profile_create.html', {'form': form})
+
+
+def position_create(request):
+    if request.method == 'POST':
+        form = PositionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = PositionForm()
+    return render(request, 'position_create.html', {'form': form})

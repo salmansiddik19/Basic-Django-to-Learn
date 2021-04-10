@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'phonenumber_field',
+    'geoposition',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyD1LerxXTl3UY1Xe4AsixNnqR5S1EQvs9U'
