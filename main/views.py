@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Product
-from .forms import ProductForm
+from .forms import ProductForm, ProfileForm
 from django.contrib.auth.decorators import login_required
 from .decorators import user_is_sold_by
 from main.templatetags import product_tags
@@ -93,3 +93,14 @@ def error_500(request, *args, **kwargs):
 def product_image_list(request):
     product = Product.objects.all()
     return render(request, 'product_image_list.html', {'products': product})
+
+
+def profile_create(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = ProfileForm()
+    return render(request, 'profile_create.html', {'form': form})

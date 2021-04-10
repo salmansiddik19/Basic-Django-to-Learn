@@ -1,6 +1,16 @@
 from PIL import Image
 from django import forms
-from .models import Product
+from .models import Product, Profile
+from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
+
+
+class ProfileForm(forms.ModelForm):
+    phone_num = PhoneNumberField(widget=PhoneNumberPrefixWidget(initial='BD'))
+
+    class Meta:
+        model = Profile
+        fields = '__all__'
 
 
 class ProductForm(forms.ModelForm):

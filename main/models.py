@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class CustomProductManager(models.Manager):
@@ -29,3 +30,11 @@ class Review(models.Model):
 
     def __str__(self):
         return self.content
+
+
+class Profile(models.Model):
+    name = models.CharField(max_length=200)
+    phone_num = PhoneNumberField()
+
+    def __str__(self):
+        return str(self.phone_num)
