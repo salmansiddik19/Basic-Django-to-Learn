@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # local
     'main',
+
+    # third-party
     'phonenumber_field',
     'geoposition',
+    'simple_history',
 ]
 
 MIDDLEWARE = [
@@ -50,8 +55,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    ################
+
+    ################ local ######################################
     'main.middleware.JSONTranslationMiddleware',
+
+    ################ third-party ################################
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'basic.urls'
@@ -133,3 +142,6 @@ STATICFILES_DIRS = (
 )
 
 GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyD1LerxXTl3UY1Xe4AsixNnqR5S1EQvs9U'
+
+SIMPLE_HISTORY_REVERT_DISABLED = True
+# SIMPLE_HISTORY_HISTORY_ID_USE_UUID = True
