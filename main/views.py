@@ -1,6 +1,8 @@
+import csv
+import io
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import Product
+from .models import Product, Profile
 from .forms import ProductForm, ProfileForm, PositionForm
 from django.contrib.auth.decorators import login_required
 from .decorators import user_is_sold_by
@@ -115,3 +117,39 @@ def position_create(request):
     else:
         form = PositionForm()
     return render(request, 'position_create.html', {'form': form})
+
+
+def export(request):
+    response = HttpResponse(content_type='text/csv')
+    writer = csv.writer(response)
+    writer.writerow(['Name', 'Price', 'Sold_by', 'Stock'])
+    for product in Product.objects.all().values_list('name', 'price', 'sold_by', 'stock'):
+        writer.writerow(product)
+    response['Content-Disposition'] = 'attachment; filename="products.csv"'
+    return response
+
+
+def profile_upload(request):
+    prompt = {
+        'order': 'Order of the csv should be name, phone_num'
+    }
+    if request.method == 'GET':
+        return render(request, 'profile_upload.html', prompt)
+
+    csv_file = request.FILES['file']
+    print(csv_file.name)
+    if not csv_file:
+        messages.error(request, 'Please choose a file...')
+    elif not csv_file.name.endswith('.csv'):
+        messages.error(request, 'This is not a csv file')
+    else:
+        data_set = csv_file.read().decode('UTF-8')
+        io_string = io.StringIO(data_set)
+        next(io_string)
+        for column in csv.reader(io_string, delimiter=',', quotechar="|"):
+            obj, created = Profile.objects.update_or_create(
+                name=column[0],
+                phone_num=column[1],
+            )
+        return HttpResponse('success')
+    return render(request, 'profile_upload.html', {})
