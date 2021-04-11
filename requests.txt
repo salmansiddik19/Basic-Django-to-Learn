@@ -1,0 +1,490 @@
+Python 3.8.5 (default, Jan 27 2021, 15:41:15) 
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> import requests
+>>> r = requests.get('https://127.0.0.1:8000')
+Traceback (most recent call last):
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/urllib3/connectionpool.py", line 699, in urlopen
+    httplib_response = self._make_request(
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/urllib3/connectionpool.py", line 382, in _make_request
+    self._validate_conn(conn)
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1010, in _validate_conn
+    conn.connect()
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/urllib3/connection.py", line 411, in connect
+    self.sock = ssl_wrap_socket(
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/urllib3/util/ssl_.py", line 432, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls)
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/urllib3/util/ssl_.py", line 474, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock)
+  File "/usr/lib/python3.8/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/lib/python3.8/ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "/usr/lib/python3.8/ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLError: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1123)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/urllib3/connectionpool.py", line 755, in urlopen
+    retries = retries.increment(
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/urllib3/util/retry.py", line 574, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1123)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/requests/adapters.py", line 514, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1123)')))
+>>> r = requests.get('http://127.0.0.1:8000')
+>>> r
+<Response [200]>
+>>> r.text
+'<html lang="en">\n\n<head>\n    <meta charset="UTF-8">\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n</head>\n\n<body>\n    \n\n    <!-- Comment Tag -->\n    <h3>Comment Tag ...</h3>\n    Data uncommented :\n    <br>\n    &lt;p&gt; this is a comment &lt;/p&gt;\n    <br>\n    Data commented :\n    <br>\n    \n    <br>\n    <hr>\n    <!-- ############################# -->\n\n    <!-- Cycle Tag -->\n    <h3>Cycle Tag ...</h3>\n    \n    <tr class="row1">\n        1\n        <br>\n    </tr>\n    \n    <tr class="row2">\n        2\n        <br>\n    </tr>\n    \n    <tr class="row1">\n        3\n        <br>\n    </tr>\n    \n    <tr class="row2">\n        4\n        <br>\n    </tr>\n    \n    <tr class="row1">\n        5\n        <br>\n    </tr>\n    \n    <tr class="row2">\n        6\n        <br>\n    </tr>\n    \n    <tr class="row1">\n        7\n        <br>\n    </tr>\n    \n    <tr class="row2">\n        8\n        <br>\n    </tr>\n    \n    <tr class="row1">\n        9\n        <br>\n    </tr>\n    \n    <tr class="row2">\n        10\n        <br>\n    </tr>\n    \n    <hr>\n    <!-- ############################# -->\n\n    <!-- Filter Tag -->\n    <h3>Filter Tag ...</h3>\n    \n    this text will be html-escaped, and will appear in all lowercase.\n    \n    <hr>\n    <!-- ############################# -->\n\n\n    <!-- Firstof Tag -->\n    <h3>Firstof Tag ...</h3>\n\n    <h5>Variable displayed : </h5>\n    this is a firstof value\n    <hr>\n    <!-- ############################# -->\n\n    <!-- For Tag -->\n    <h3>For Tag ...</h3>\n    \n    There is a point at 1,2\n    <br>\n    \n    There is a point at 4,7\n    <br>\n    \n    There is a point at 6,9\n    <br>\n    \n    There is a point at 8,11\n    <br>\n    \n    <hr>\n    <!-- ############################# -->\n\n    <!-- Now Tag -->\n    <h3>Now Tag ...</h3>\n    It is 11th April 2021 16:27\n    <br>\n    It is the 11th of April\n    <br>\n    It is 04/11/2021 4:27 p.m.\n    <hr>\n    <!-- ############################# -->\n\n\n    <!-- Custom context processor -->\n    <h3>Custom context processor ...</h3>\n    <u>\n        \n        <li><a href="/products/edit/1/">Blue-indigo</a></li>\n        \n        <li><a href="/products/edit/2/">Man T-01</a></li>\n        \n        <li><a href="/products/edit/3/">Man T-02</a></li>\n        \n        <li><a href="/products/edit/4/">Man T-03</a></li>\n        \n        <li><a href="/products/edit/5/">Man T-04</a></li>\n        \n        <li><a href="/products/edit/6/">Man T-05</a></li>\n        \n        <li><a href="/products/edit/7/">Man T-06</a></li>\n        \n        <li><a href="/products/edit/8/">Man T-07</a></li>\n        \n        <li><a href="/products/edit/9/">Woman T-01</a></li>\n        \n    </u>\n    <hr>\n    <!-- ############################# -->\n\n\n    <!-- Custom context processor (Latest image) -->\n    <h3>Custom context processor (Latest image) ...</h3>\n    <img src="/media/images/360_F_267612194_FSsBdjSUZnwCUrXvtBJe2SzvzB3A7raC_4qTWPtQ.jpg" alt=\'\' />\n    <hr>\n    <!-- ############################# -->\n\n\n    <!-- Now Tag -->\n    <h3>Now Tag ...</h3>\n    <hr>\n    <!-- ############################# -->\n\n\n</body>\n\n</html>'
+>>> 
+>>> r.encoding
+'utf-8'
+>>> r.content
+b'<html lang="en">\n\n<head>\n    <meta charset="UTF-8">\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n</head>\n\n<body>\n    \n\n    <!-- Comment Tag -->\n    <h3>Comment Tag ...</h3>\n    Data uncommented :\n    <br>\n    &lt;p&gt; this is a comment &lt;/p&gt;\n    <br>\n    Data commented :\n    <br>\n    \n    <br>\n    <hr>\n    <!-- ############################# -->\n\n    <!-- Cycle Tag -->\n    <h3>Cycle Tag ...</h3>\n    \n    <tr class="row1">\n        1\n        <br>\n    </tr>\n    \n    <tr class="row2">\n        2\n        <br>\n    </tr>\n    \n    <tr class="row1">\n        3\n        <br>\n    </tr>\n    \n    <tr class="row2">\n        4\n        <br>\n    </tr>\n    \n    <tr class="row1">\n        5\n        <br>\n    </tr>\n    \n    <tr class="row2">\n        6\n        <br>\n    </tr>\n    \n    <tr class="row1">\n        7\n        <br>\n    </tr>\n    \n    <tr class="row2">\n        8\n        <br>\n    </tr>\n    \n    <tr class="row1">\n        9\n        <br>\n    </tr>\n    \n    <tr class="row2">\n        10\n        <br>\n    </tr>\n    \n    <hr>\n    <!-- ############################# -->\n\n    <!-- Filter Tag -->\n    <h3>Filter Tag ...</h3>\n    \n    this text will be html-escaped, and will appear in all lowercase.\n    \n    <hr>\n    <!-- ############################# -->\n\n\n    <!-- Firstof Tag -->\n    <h3>Firstof Tag ...</h3>\n\n    <h5>Variable displayed : </h5>\n    this is a firstof value\n    <hr>\n    <!-- ############################# -->\n\n    <!-- For Tag -->\n    <h3>For Tag ...</h3>\n    \n    There is a point at 1,2\n    <br>\n    \n    There is a point at 4,7\n    <br>\n    \n    There is a point at 6,9\n    <br>\n    \n    There is a point at 8,11\n    <br>\n    \n    <hr>\n    <!-- ############################# -->\n\n    <!-- Now Tag -->\n    <h3>Now Tag ...</h3>\n    It is 11th April 2021 16:27\n    <br>\n    It is the 11th of April\n    <br>\n    It is 04/11/2021 4:27 p.m.\n    <hr>\n    <!-- ############################# -->\n\n\n    <!-- Custom context processor -->\n    <h3>Custom context processor ...</h3>\n    <u>\n        \n        <li><a href="/products/edit/1/">Blue-indigo</a></li>\n        \n        <li><a href="/products/edit/2/">Man T-01</a></li>\n        \n        <li><a href="/products/edit/3/">Man T-02</a></li>\n        \n        <li><a href="/products/edit/4/">Man T-03</a></li>\n        \n        <li><a href="/products/edit/5/">Man T-04</a></li>\n        \n        <li><a href="/products/edit/6/">Man T-05</a></li>\n        \n        <li><a href="/products/edit/7/">Man T-06</a></li>\n        \n        <li><a href="/products/edit/8/">Man T-07</a></li>\n        \n        <li><a href="/products/edit/9/">Woman T-01</a></li>\n        \n    </u>\n    <hr>\n    <!-- ############################# -->\n\n\n    <!-- Custom context processor (Latest image) -->\n    <h3>Custom context processor (Latest image) ...</h3>\n    <img src="/media/images/360_F_267612194_FSsBdjSUZnwCUrXvtBJe2SzvzB3A7raC_4qTWPtQ.jpg" alt=\'\' />\n    <hr>\n    <!-- ############################# -->\n\n\n    <!-- Now Tag -->\n    <h3>Now Tag ...</h3>\n    <hr>\n    <!-- ############################# -->\n\n\n</body>\n\n</html>'
+>>> 
+>>> from PIL import Image
+>>> from io import BytesIO
+>>> i = Image.open(BytesIO(r.content))
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/PIL/Image.py", line 2967, in open
+    raise UnidentifiedImageError(
+PIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7eff77aa6180>
+>>> r.json
+<bound method Response.json of <Response [200]>>
+>>> r.json()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/requests/models.py", line 900, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/usr/lib/python3.8/json/__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.8/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.8/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+>>> r = requests.get('http://127.0.0.1:8000', stream=True)
+>>> r.raw
+<urllib3.response.HTTPResponse object at 0x7eff76403d30>
+>>> r.raw.read(10)
+b'<html lang'
+>>> payload = {'key1': 'value1', 'key2': 'value2'}
+>>> r = requests.post("http://127.0.0.1:8000/post", data=payload)
+>>> print(r.text)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Page not found at /post</title>
+  <meta name="robots" content="NONE,NOARCHIVE">
+  <style type="text/css">
+    html * { padding:0; margin:0; }
+    body * { padding:10px 20px; }
+    body * * { padding:0; }
+    body { font:small sans-serif; background:#eee; color:#000; }
+    body>div { border-bottom:1px solid #ddd; }
+    h1 { font-weight:normal; margin-bottom:.4em; }
+    h1 span { font-size:60%; color:#666; font-weight:normal; }
+    table { border:none; border-collapse: collapse; width:100%; }
+    td, th { vertical-align:top; padding:2px 3px; }
+    th { width:12em; text-align:right; color:#666; padding-right:.5em; }
+    #info { background:#f6f6f6; }
+    #info ol { margin: 0.5em 4em; }
+    #info ol li { font-family: monospace; }
+    #summary { background: #ffc; }
+    #explanation { background:#eee; border-bottom: 0px none; }
+  </style>
+</head>
+<body>
+  <div id="summary">
+    <h1>Page not found <span>(404)</span></h1>
+    <table class="meta">
+      <tr>
+        <th>Request Method:</th>
+        <td>POST</td>
+      </tr>
+      <tr>
+        <th>Request URL:</th>
+        <td>http://127.0.0.1:8000/post</td>
+      </tr>
+      
+    </table>
+  </div>
+  <div id="info">
+    
+      <p>
+      Using the URLconf defined in <code>basic.urls</code>,
+      Django tried these URL patterns, in this order:
+      </p>
+      <ol>
+        
+          <li>
+            
+                admin/
+                
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                
+                [name='home']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                products/
+                [name='product_list']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                products/images/
+                [name='product_image_list']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                products/edit/&lt;int:product_id&gt;/
+                [name='product_edit']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                demo/
+                [name='demo']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                products/stock-list/
+                [name='is_stock']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                profile/create/
+                [name='profile_create']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                position/create/
+                [name='position_create']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                product/add/
+                [name='product_add']
+            
+          </li>
+        
+          <li>
+            
+                ^media/(?P&lt;path&gt;.*)$
+                
+            
+          </li>
+        
+      </ol>
+      <p>
+        
+        The current path, <code>post</code>, didn't match any of these.
+      </p>
+    
+  </div>
+
+  <div id="explanation">
+    <p>
+      You're seeing this error because you have <code>DEBUG = True</code> in
+      your Django settings file. Change that to <code>False</code>, and Django
+      will display a standard 404 page.
+    </p>
+  </div>
+</body>
+</html>
+
+>>> r = requests.post("http://127.0.0.1:8000/product/create", data=payload)
+>>> print(r.text)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Page not found at /product/create</title>
+  <meta name="robots" content="NONE,NOARCHIVE">
+  <style type="text/css">
+    html * { padding:0; margin:0; }
+    body * { padding:10px 20px; }
+    body * * { padding:0; }
+    body { font:small sans-serif; background:#eee; color:#000; }
+    body>div { border-bottom:1px solid #ddd; }
+    h1 { font-weight:normal; margin-bottom:.4em; }
+    h1 span { font-size:60%; color:#666; font-weight:normal; }
+    table { border:none; border-collapse: collapse; width:100%; }
+    td, th { vertical-align:top; padding:2px 3px; }
+    th { width:12em; text-align:right; color:#666; padding-right:.5em; }
+    #info { background:#f6f6f6; }
+    #info ol { margin: 0.5em 4em; }
+    #info ol li { font-family: monospace; }
+    #summary { background: #ffc; }
+    #explanation { background:#eee; border-bottom: 0px none; }
+  </style>
+</head>
+<body>
+  <div id="summary">
+    <h1>Page not found <span>(404)</span></h1>
+    <table class="meta">
+      <tr>
+        <th>Request Method:</th>
+        <td>POST</td>
+      </tr>
+      <tr>
+        <th>Request URL:</th>
+        <td>http://127.0.0.1:8000/product/create</td>
+      </tr>
+      
+    </table>
+  </div>
+  <div id="info">
+    
+      <p>
+      Using the URLconf defined in <code>basic.urls</code>,
+      Django tried these URL patterns, in this order:
+      </p>
+      <ol>
+        
+          <li>
+            
+                admin/
+                
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                
+                [name='home']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                products/
+                [name='product_list']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                products/images/
+                [name='product_image_list']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                products/edit/&lt;int:product_id&gt;/
+                [name='product_edit']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                demo/
+                [name='demo']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                products/stock-list/
+                [name='is_stock']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                profile/create/
+                [name='profile_create']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                position/create/
+                [name='position_create']
+            
+          </li>
+        
+          <li>
+            
+                
+                
+            
+                product/add/
+                [name='product_add']
+            
+          </li>
+        
+          <li>
+            
+                ^media/(?P&lt;path&gt;.*)$
+                
+            
+          </li>
+        
+      </ol>
+      <p>
+        
+        The current path, <code>product/create</code>, didn't match any of these.
+      </p>
+    
+  </div>
+
+  <div id="explanation">
+    <p>
+      You're seeing this error because you have <code>DEBUG = True</code> in
+      your Django settings file. Change that to <code>False</code>, and Django
+      will display a standard 404 page.
+    </p>
+  </div>
+</body>
+</html>
+
+>>> r = requests.get('http://127.0.0.1:8000')
+>>> r.status_code
+200
+>>> r.status_code == request.codes.ok
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'request' is not defined
+>>> r.status_code == requests.codes.ok
+True
+>>> bad_r = requests.get('https://httpbin.org/status/404')
+>>> bad_r.status_code
+404
+>>> bad_r.raise_for_status()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/requests/models.py", line 943, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: NOT FOUND for url: https://httpbin.org/status/404
+>>> r.headers
+{'Date': 'Sun, 11 Apr 2021 10:58:02 GMT', 'Server': 'WSGIServer/0.2 CPython/3.8.5', 'Content-Type': 'text/html; charset=utf-8', 'X-Frame-Options': 'DENY', 'Content-Length': '3166', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'same-origin'}
+>>> r.headers['Content-Type']
+'text/html; charset=utf-8'
+>>> r.headers.get('content-type')
+'text/html; charset=utf-8'
+>>> url = 'http://example.com/some/cookie/setting/url'
+>>> r = requests.get(url)
+>>> r.cookies['example_cookie_name']
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/requests/cookies.py", line 328, in __getitem__
+    return self._find_no_duplicates(name)
+  File "/home/salman/.virtualenvs/basic-django/lib/python3.8/site-packages/requests/cookies.py", line 399, in _find_no_duplicates
+    raise KeyError('name=%r, domain=%r, path=%r' % (name, domain, path))
+KeyError: "name='example_cookie_name', domain=None, path=None"
+>>> url = 'https://httpbin.org/cookies'
+>>> cookies = dict(cookies_are='working')
+>>> r = requests.get(url, cookies=cookies)
+>>> r.text
+'{\n  "cookies": {\n    "cookies_are": "working"\n  }\n}\n'
+>>> r = requests.get('http://github.com/')
+>>> r.url
+'https://github.com/'
+>>> r.history
+[<Response [301]>]
+>>> r.status_code
+200
+>>> r = requests.get('http://github.com/', allow_redirects=False)
+>>> r.status_code
+301
+>>> r.history
+[]
+>>> r = requests.head('http://github.com/', allow_redirects=True)
+r>>> 
+>>> r.history
+[<Response [301]>]
+
