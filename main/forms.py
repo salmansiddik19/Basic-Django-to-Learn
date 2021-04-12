@@ -3,6 +3,7 @@ from django import forms
 from .models import Product, Profile, PointOfInterest
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
+from ckeditor.fields import RichTextField
 
 
 class ProfileForm(forms.ModelForm):
@@ -14,6 +15,7 @@ class ProfileForm(forms.ModelForm):
 
 
 class PositionForm(forms.ModelForm):
+    description = RichTextField()
 
     class Meta:
         model = PointOfInterest
@@ -23,7 +25,7 @@ class PositionForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('name', 'price', 'image')
+        fields = ('name', 'price', 'image', 'description')
 
     def save(self, *args, **kwargs):
         product = super().save(*args, **kwargs)
