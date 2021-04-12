@@ -19,4 +19,5 @@ urlpatterns = [
 
     ##########  class based view ############
     path('product/add/', ProductCreateView.as_view(), name='product_add'),
+    path('pdf/', views.pdf_view, name='pdf_view'),
 ]

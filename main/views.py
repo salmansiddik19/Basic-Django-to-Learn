@@ -1,7 +1,8 @@
 import csv
 import io
+from datetime import datetime
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from .models import Product, Profile
 from .forms import ProductForm, ProfileForm, PositionForm
 from django.contrib.auth.decorators import login_required
@@ -11,6 +12,7 @@ from django.template.response import TemplateResponse
 from django.contrib import messages
 from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
+from reportlab.pdfgen import canvas
 
 
 class FormMessageMixin(object):
@@ -153,3 +155,15 @@ def profile_upload(request):
             )
         return HttpResponse('success')
     return render(request, 'profile_upload.html', {})
+
+
+def pdf_view(request):
+    d = datetime.now().strftime('%x')
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+    p.drawString(78, 780, "This is my first PDF view...")
+    p.setTitle('Hello PDF')
+    p.showPage()
+    p.save()
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=False, filename=f'{d}.pdf')
