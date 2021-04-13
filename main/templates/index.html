@@ -92,7 +92,9 @@
 
     <!-- Custom context processor (Latest image) -->
     <h3>Custom context processor (Latest image) ...</h3>
+    {% if latest_product.image %}
     <img src="{{latest_product.image.url}}" alt='' />
+    {% endif %}
     <hr>
     <!-- ############################# -->
 

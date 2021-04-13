@@ -5,8 +5,7 @@ phonenumbers==8.12.21
 django-phonenumber-field==5.0.0
 babel==2.9.0
 django-geoposition==0.3.1
-django-utils.six==2.0
-django-simple-history==2.12.0 
+django-utils.six==2.0 
 six==1.15.0
 python-decouple==3.4
 requests==2.25.1 

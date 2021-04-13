@@ -41,11 +41,12 @@ INSTALLED_APPS = [
 
     # local
     'main',
+    'user',
 
     # third-party
     'phonenumber_field',
     'geoposition',
-    'simple_history',
+    # 'simple_history',
     'ckeditor',
 ]
 
@@ -62,7 +63,7 @@ MIDDLEWARE = [
     'main.middleware.JSONTranslationMiddleware',
 
     ################ third-party ################################
-    'simple_history.middleware.HistoryRequestMiddleware',
+    # 'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'basic.urls'
@@ -92,8 +93,12 @@ WSGI_APPLICATION = 'basic.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASS'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
@@ -145,5 +150,7 @@ STATICFILES_DIRS = (
 
 GEOPOSITION_GOOGLE_MAPS_API_KEY = config('GEOPOSITION_GOOGLE_MAPS_API_KEY')
 
-SIMPLE_HISTORY_REVERT_DISABLED = config(
-    'SIMPLE_HISTORY_REVERT_DISABLED', default=False, cast=bool)
+# SIMPLE_HISTORY_REVERT_DISABLED = config(
+#     'SIMPLE_HISTORY_REVERT_DISABLED', default=False, cast=bool)
+
+AUTH_USER_MODEL = 'user.User'

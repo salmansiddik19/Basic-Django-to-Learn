@@ -1,13 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
+from user.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from geoposition.fields import GeopositionField
-from simple_history.models import HistoricalRecords
-from simple_history import register
+# from simple_history.models import HistoricalRecords
+# from simple_history import register
 from ckeditor.fields import RichTextField
 
 
-register(User)
+# register(User)
 
 
 class CustomProductManager(models.Manager):
@@ -22,7 +22,7 @@ class Product(models.Model):
     price = models.IntegerField()
     image = models.ImageField(null=True, blank=True, upload_to='images/')
     stock = models.BooleanField(default=False)
-    history = HistoricalRecords()
+    # history = HistoricalRecords()
 
     objects = models.Manager()
     is_stock = CustomProductManager()
