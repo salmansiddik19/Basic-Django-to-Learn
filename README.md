@@ -91,4 +91,12 @@ REST technology is generally preferred over other similar technologies. This ten
 //simple job
 30 9 * * 6 echo 'Hello' >> /tmp/test.txt
 
+# Session
+Session is used to store per-user information for the current Web session on the server. It supports using a database server as the back-end store.
+
+# Cookie
+Cookie is used to store per-user information for the current Web session or persistent information on the client, therefore client has control over the contents of a cookie.
+
+# Cache
+Cache object is shared between users in a single application. Its primary purpose is to cache data from a data store and should not be used as a primary storage. It supports automatic invalidation features.
 
