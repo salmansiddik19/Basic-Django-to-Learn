@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'geoposition',
     # 'simple_history',
     'ckeditor',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -154,3 +155,7 @@ GEOPOSITION_GOOGLE_MAPS_API_KEY = config('GEOPOSITION_GOOGLE_MAPS_API_KEY')
 #     'SIMPLE_HISTORY_REVERT_DISABLED', default=False, cast=bool)
 
 AUTH_USER_MODEL = 'user.User'
+
+CRONJOBS = [
+    ('* * * * *', 'main.cron.my_cron_job')
+]

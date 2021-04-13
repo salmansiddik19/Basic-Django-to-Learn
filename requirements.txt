@@ -11,3 +11,6 @@ python-decouple==3.4
 requests==2.25.1 
 django-ckeditor==6.0.0
 reportlab==3.5.66
+python-crontab==2.5.1 
+python-dateutil==2.8.1
+django-crontab==0.7.1
