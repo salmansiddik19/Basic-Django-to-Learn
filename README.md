@@ -77,4 +77,18 @@ A RESTful API -- also referred to as a RESTful web service or REST API -- is bas
 
 REST technology is generally preferred over other similar technologies. This tends to be the case because REST uses less bandwidth, making it more suitable for efficient internet usage. RESTful APIs can also be built with programming languages such as JavaScript or Python.
 
+# cron job
+ ┌───────────── minute (0 - 59)
+ │ ┌───────────── hour (0 - 23)
+ │ │ ┌───────────── day of month (1 - 31)
+ │ │ │ ┌───────────── month (1 - 12)
+ │ │ │ │ ┌───────────── day of week (0 - 6) (Sunday to Saturday;
+ │ │ │ │ │                                       7 is also Sunday on some systems)
+ │ │ │ │ │
+ │ │ │ │ │
+ * * * * *  command_to_execute
+
+//simple job
+30 9 * * 6 echo 'Hello' >> /tmp/test.txt
+
 
