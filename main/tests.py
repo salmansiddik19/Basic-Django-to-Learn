@@ -13,7 +13,7 @@ class BasicTest(TestCase):
         record = Product.objects.get(pk=1)
         self.assertEqual(record, product)
 
-    def test_slug_on_save(self):
+    def test_stock_on_save(self):
         product = Product()
         product.name = 'test item'
         product.description = 'it is a test item'
